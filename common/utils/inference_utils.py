@@ -27,7 +27,7 @@ VALID_BODY_PARTS_V2 = [
 layerdiff_pipeline: KDiffusionStableDiffusionXLPipeline = None
 def apply_layerdiff(
     imgp: str, pretrained: str, num_inference_steps=30, seed=0, save_dir='workspace/layerdiff_output', target_tag_list=VALID_BODY_PARTS_V2, 
-    resolution=1280, vae_ckpt=None, unet_ckpt=None):
+    resolution=1280, vae_ckpt=None, unet_ckpt=None, scheduler=None):
     
     global layerdiff_pipeline
     if layerdiff_pipeline is None:
@@ -40,7 +40,7 @@ def apply_layerdiff(
         layerdiff_pipeline = KDiffusionStableDiffusionXLPipeline.from_pretrained(
             pretrained,
             trans_vae=trans_vae, unet=unet,
-            scheduler=None
+            scheduler=scheduler
         )
 
         if vae_ckpt is not None:
