@@ -27,7 +27,11 @@ VALID_BODY_PARTS_V2 = [
 layerdiff_pipeline: KDiffusionStableDiffusionXLPipeline = None
 def apply_layerdiff(
     imgp: str, pretrained: str, num_inference_steps=30, seed=0, save_dir='workspace/layerdiff_output', target_tag_list=VALID_BODY_PARTS_V2, 
-    resolution=1280, vae_ckpt=None, unet_ckpt=None, scheduler=None):
+    resolution=1280, vae_ckpt=None, unet_ckpt=None, scheduler=None,
+    scheduler_name="DPMPP_2M_SDE",
+    scheduler_config_name="zero",
+    scheduler_model_id="frankjoshua/juggernautXL_version6Rundiffusion",
+    on_pipe_loaded=None):
     
     global layerdiff_pipeline
     if layerdiff_pipeline is None:
@@ -40,7 +44,10 @@ def apply_layerdiff(
         layerdiff_pipeline = KDiffusionStableDiffusionXLPipeline.from_pretrained(
             pretrained,
             trans_vae=trans_vae, unet=unet,
-            scheduler=scheduler
+            scheduler=scheduler,
+            scheduler_name=scheduler_name,
+            scheduler_config_name=scheduler_config_name,
+            scheduler_model_id=scheduler_model_id
         )
 
         if vae_ckpt is not None:
@@ -68,6 +75,8 @@ def apply_layerdiff(
         layerdiff_pipeline.text_encoder_2.to(dtype=torch.bfloat16, device='cuda')
 
     pipeline = layerdiff_pipeline
+    if on_pipe_loaded is not None:
+        on_pipe_loaded(pipeline)
 
     saved = osp.join(save_dir, osp.splitext(osp.basename(imgp))[0])
     os.makedirs(saved, exist_ok=True)

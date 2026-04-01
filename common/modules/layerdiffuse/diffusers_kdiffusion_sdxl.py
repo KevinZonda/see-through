@@ -78,6 +78,9 @@ class KDiffusionStableDiffusionXLPipeline(StableDiffusionXLImg2ImgPipeline):
         requires_aesthetics_score: bool = False,
         force_zeros_for_empty_prompt: bool = True,
         add_watermarker: Optional[bool] = None,
+        scheduler_name="DPMPP_2M_SDE",
+        scheduler_config_name="zero",
+        scheduler_model_id="frankjoshua/juggernautXL_version6Rundiffusion",
         ):
 
         if scheduler is None:
@@ -116,12 +119,9 @@ class KDiffusionStableDiffusionXLPipeline(StableDiffusionXLImg2ImgPipeline):
                     "zero": (DPMSolverSinglestepScheduler, {"use_karras_sigmas": True, **config_zero}),
                 },
             }
-            model_id = "frankjoshua/juggernautXL_version6Rundiffusion"
-            scheduler_name = "DPMPP_2M_SDE"
-            scheduler_config_name = "zero"
             scheduler_configs = schedulers[scheduler_name]
             scheduler = scheduler_configs[scheduler_config_name][0].from_pretrained(
-                    model_id,
+                    scheduler_model_id,
                     subfolder="scheduler",
                     **scheduler_configs[scheduler_config_name][1],
             )
