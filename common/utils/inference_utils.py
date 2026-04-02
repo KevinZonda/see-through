@@ -189,7 +189,8 @@ def apply_layerdiff(
 
 
 marigold_pipeline: MarigoldDepthPipeline = None
-def apply_marigold(srcp, pretrained: str, num_inference_steps=30, seed=0, save_dir='workspace/layerdiff_output', target_tag_list=VALID_BODY_PARTS_V2, resolution=1280, normalize_depth=False):
+def apply_marigold(srcp, pretrained: str, num_inference_steps=30, seed=0, save_dir='workspace/layerdiff_output', target_tag_list=VALID_BODY_PARTS_V2, resolution=1280, normalize_depth=False,
+                    depth_min=0, depth_max=1):
     global marigold_pipeline
     if marigold_pipeline is None:
         unet = UNetFrameConditionModel.from_pretrained(pretrained, subfolder='unet')
@@ -208,7 +209,7 @@ def apply_marigold(srcp, pretrained: str, num_inference_steps=30, seed=0, save_d
     saved = osp.join(save_dir, srcname)
 
     compose_list = {'eyes': ['eyewhite', 'irides', 'eyelash', 'eyebrow'], 'hair': ['back hair', 'front hair']}
-    for tag in VALID_BODY_PARTS_V2:
+    for tag in target_tag_list:
         tagp = osp.join(saved, f'{tag}.png')
         if osp.exists(tagp):
             exist_list.append(True)
@@ -234,7 +235,7 @@ def apply_marigold(srcp, pretrained: str, num_inference_steps=30, seed=0, save_d
                 taglist.append(tag)
         if len(imlist) > 0:
             img = img_alpha_blending(imlist, premultiplied=False)
-            img_list[VALID_BODY_PARTS_V2.index(c)] = img
+            img_list[target_tag_list.index(c)] = img
             compose_dict[c] = {'taglist': taglist, 'imlist': imlist}
 
     for img in img_list:
