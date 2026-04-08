@@ -5,7 +5,6 @@ import numpy as np
 from pathlib import Path
 import shutil
 import sys
-sys.path.append(osp.dirname(osp.dirname(osp.abspath(__file__))))
 
 from PIL import Image
 from  tqdm import tqdm

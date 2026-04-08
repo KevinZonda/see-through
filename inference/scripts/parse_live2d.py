@@ -322,6 +322,18 @@ def assign_tag_by_path(lmodel: Live2DScrapModel):
     for d in lmodel.drawables:
         if d.did is None:
             continue
+        if 'eye_ball' in d.did.lower():
+            d.set_tag('irides')
+        if 'brow' in d.did.lower():
+            d.set_tag('eyebrow')
+        if 'eyewhite' in d.did.lower():
+            d.set_tag('eyewhite')
+        if 'mouth' in d.did.lower():
+            d.set_tag('mouth')
+        if 'eyelash' in d.did.lower():
+            d.set_tag('eyelash')
+        if 'tooth' in d.did.lower():
+            d.set_tag('mouth')
         if 'arm' in d.did.lower():
             did_contain_arms = True
 
