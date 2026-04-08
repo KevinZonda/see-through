@@ -356,8 +356,8 @@ if __name__ == '__main__':
     parser.add_argument('--no_cpu_offload', action='store_false', dest='cpu_offload',
                         help='disable model CPU offload')
     parser.add_argument('--num_inference_steps', type=int, default=30)
-    parser.add_argument('--resolution_depth', type=int, default=720,
-                        help='Marigold depth inference resolution (default 720; -1 to match layerdiff resolution)')
+    parser.add_argument('--resolution_depth', type=int, default=768,
+                        help='Marigold depth inference resolution (default 768; -1 to match layerdiff resolution)')
     parser.add_argument('--group_offload', action='store_true', default=True,
                         help='Enable group offload to reduce peak VRAM (default: on)')
     parser.add_argument('--no_group_offload', action='store_false', dest='group_offload',

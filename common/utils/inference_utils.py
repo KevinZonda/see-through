@@ -187,7 +187,7 @@ def apply_layerdiff(
 
 marigold_pipeline: MarigoldDepthPipeline = None
 def apply_marigold(srcp, pretrained: str, num_inference_steps=-1, seed=0, save_dir='workspace/layerdiff_output', target_tag_list=VALID_BODY_PARTS_V2, \
-    resolution=1280, normalize_depth=False, disable_progressbar=False, cache_tag_embeds=True, group_offload=False):
+    resolution=768, normalize_depth=False, disable_progressbar=False, cache_tag_embeds=True, group_offload=False):
     global marigold_pipeline
     if marigold_pipeline is None:
         unet = UNetFrameConditionModel.from_pretrained(pretrained, subfolder='unet')
