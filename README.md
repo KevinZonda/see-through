@@ -3,6 +3,7 @@ See-through: Single-image Layer Decomposition for Anime Characters
 ---
 
 <a href='https://arxiv.org/abs/2602.03749'><img src='https://img.shields.io/badge/arXiv-2602.03749-b31b1b.svg'></a>
+<a href='https://dl.acm.org/doi/10.1145/3799902.3811209'><img src='https://img.shields.io/badge/ACM-Digital%20Library-0085CA.svg'></a>
 <a href='https://huggingface.co/spaces/24yearsold/see-through-demo'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Space-PSD%20Inference%20Demo-blue'></a>
 <a href='https://modelscope.cn/studios/ljsabc/See-Through'><img src='https://img.shields.io/badge/ModelScope-Demo%2F在线演示-624aff.svg'></a>
 
@@ -13,7 +14,7 @@ _**[Jian Lin](https://github.com/dmMaze)<sup>1</sup>, [Chengze Li](https://moeka
 
 <sup>*</sup>Corresponding author
 
-Conditionally accepted to appear in *ACM SIGGRAPH 2026 Conference Proceedings*.
+Published in *ACM SIGGRAPH 2026 Conference Papers*.
 
 </div>
 
@@ -292,10 +293,16 @@ We thank the authors of the following projects that made this work possible:
 If you find this work useful, please cite:
 
 ```bibtex
-@article{lin2026seethrough,
-  title={See-through: Single-image Layer Decomposition for Anime Characters},
+@inproceedings{lin2026seethrough,
   author={Lin, Jian and Li, Chengze and Qin, Haoyun and Chan, Kwun Wang and Jin, Yanghua and Liu, Hanyuan and Choy, Stephen Chun Wang and Liu, Xueting},
-  journal={arXiv preprint arXiv:2602.03749},
-  year={2026}
+  title={See-through: Single-image Layer Decomposition for Anime Characters},
+  booktitle={Proceedings of the Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers},
+  series={SIGGRAPH Conference Papers '26},
+  publisher={Association for Computing Machinery},
+  address={New York, NY, USA},
+  year={2026},
+  pages={1--11},
+  doi={10.1145/3799902.3811209},
+  url={https://doi.org/10.1145/3799902.3811209}
 }
 ```
